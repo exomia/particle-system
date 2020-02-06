@@ -11,6 +11,7 @@
 using System;
 using Exomia.Framework.Game;
 using Exomia.Framework.Mathematics;
+using Exomia.ParticleSystem.ModifierExecutionStrategy;
 using SharpDX;
 
 namespace Exomia.ParticleSystem
