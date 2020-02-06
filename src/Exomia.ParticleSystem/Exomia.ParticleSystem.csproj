@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netstandard2.0;</TargetFrameworks>
+    <TargetFrameworks>net471;net472;net48</TargetFrameworks>
     <Authors>exomia</Authors>
     <Description>a particle system build for the usage in the exomia framework.</Description>
     <Copyright>Copyright © $([System.DateTime]::Now.Year) exomia</Copyright>
@@ -50,6 +50,14 @@
     <AssemblyName>$(MSBuildProjectName).$(Platform)</AssemblyName>
     <PackageId>$(MSBuildProjectName).$(Platform)</PackageId>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(Platform)'=='AnyCPU'">
+    <PackageReference Include="Exomia.Framework" Version="1.2.0.6" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Platform)'!='AnyCPU'">
+    <PackageReference Include="Exomia.Framework.$(Platform)" Version="1.2.0.6" />
+  </ItemGroup>
   
   <ItemGroup>
     <None Include="..\..\LICENSE">
