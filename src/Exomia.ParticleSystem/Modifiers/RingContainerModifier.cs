@@ -18,21 +18,30 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class RingContainerModifier : ModifierBase
     {
         /// <summary>
-        ///     The center.
+        ///     Gets or sets the center.
         /// </summary>
+        /// <value>
+        ///     The center.
+        /// </value>
         public Vector2 Center { get; set; }
 
         /// <summary>
+        ///     Gets or sets the radius.
+        /// </summary>
+        /// <value>
         ///     The radius.
-        /// </summary>
+        /// </value>
         public float Radius { get; set; }
-
+        
         /// <summary>
-        ///     The restitution coefficient.
+        ///     Gets or sets the restitution coefficient.
         /// </summary>
+        /// <value>
+        ///     The restitution coefficient.
+        /// </value>
         public float RestitutionCoefficient { get; set; } = 1.0f;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override unsafe void OnUpdate(float elapsedSeconds, Particle* particle, int count)
         {
             while (count-- > 0)

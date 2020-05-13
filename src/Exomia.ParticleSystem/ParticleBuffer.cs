@@ -19,24 +19,10 @@ namespace Exomia.ParticleSystem
     /// </summary>
     sealed unsafe class ParticleBuffer : IDisposable
     {
-        /// <summary>
-        ///     The native pointer.
-        /// </summary>
-        private readonly IntPtr _nativePointer;
-
-        /// <summary>
-        ///     The pointer.
-        /// </summary>
+        private readonly IntPtr    _nativePointer;
         private readonly Particle* _pointer;
+        private readonly int       _size;
 
-        /// <summary>
-        ///     The size.
-        /// </summary>
-        private readonly int _size;
-
-        /// <summary>
-        ///     The tail.
-        /// </summary>
         private int _tail;
 
         /// <summary>
@@ -150,12 +136,12 @@ namespace Exomia.ParticleSystem
                                           int    count);
 
         /// <summary>
-        ///     Allocates.
+        ///     Allocate particles.
         /// </summary>
         /// <param name="quantity"> The quantity. </param>
-        /// <param name="first">    [in,out] If non-, the first. </param>
+        /// <param name="first">    [in,out] Pointer to the first particle which can be used. </param>
         /// <returns>
-        ///     An int.
+        ///     The count of particles to release.
         /// </returns>
         public int Allocate(int quantity, out Particle* first)
         {
@@ -167,7 +153,7 @@ namespace Exomia.ParticleSystem
         }
 
         /// <summary>
-        ///     Deallocates.
+        ///     Deallocate particles.
         /// </summary>
         /// <param name="quantity"> The quantity. </param>
         public void Deallocate(int quantity)
@@ -179,7 +165,7 @@ namespace Exomia.ParticleSystem
         /// <summary>
         ///     Copies to described by destination.
         /// </summary>
-        /// <param name="destination"> Destination for the. </param>
+        /// <param name="destination"> The destination to copy to. </param>
         public void CopyTo(IntPtr destination)
         {
             MemCpy(destination, _nativePointer, Particle.SIZE_IN_BYTES * _tail);
@@ -219,7 +205,7 @@ namespace Exomia.ParticleSystem
             if (!_disposed)
             {
                 Marshal.FreeHGlobal(_nativePointer);
-                GC.RemoveMemoryPressure(Particle.SIZE_IN_BYTES * _size);
+                GC.RemoveMemoryPressure(SizeInBytes);
                 _disposed = true;
             }
         }

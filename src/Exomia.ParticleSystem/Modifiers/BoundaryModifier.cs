@@ -18,16 +18,14 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class BoundaryModifier : ModifierBase
     {
         /// <summary>
+        ///     Gets or sets the boundary.
+        /// </summary>
+        /// <value>
         ///     The boundary.
-        /// </summary>
-        public RectangleF Boundary;
+        /// </value>
+        public RectangleF Boundary { get; set; }
 
-        /// <summary>
-        ///     Executes the update action.
-        /// </summary>
-        /// <param name="elapsedSeconds"> The elapsed in seconds. </param>
-        /// <param name="particle">       [in,out] If non-, the particle. </param>
-        /// <param name="count">          Number of. </param>
+        /// <inheritdoc/>
         protected override unsafe void OnUpdate(float elapsedSeconds, Particle* particle, int count)
         {
             while (count-- > 0)

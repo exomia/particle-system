@@ -19,13 +19,19 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class VortexModifier : ModifierBase
     {
         /// <summary>
+        ///     Gets or sets the position.
+        /// </summary>
+        /// <value>
         ///     The position.
-        /// </summary>
+        /// </value>
         public Vector2 Position { get; set; }
-
+        
         /// <summary>
-        ///     The maximum speed.
+        ///     Gets or sets the maximum speed.
         /// </summary>
+        /// <value>
+        ///     The maximum speed.
+        /// </value>
         public float MaxSpeed { get; set; }
         
         /// <summary>
@@ -36,7 +42,7 @@ namespace Exomia.ParticleSystem.Modifiers
         /// </value>
         public float Mass { get; set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override unsafe void OnUpdate(float elapsedSeconds, Particle* particle, int count)
         {
             while (count-- > 0)

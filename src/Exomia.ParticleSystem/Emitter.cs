@@ -21,55 +21,18 @@ namespace Exomia.ParticleSystem
     /// </summary>
     public sealed unsafe class Emitter : IEmitter
     {
-        /// <summary>
-        ///     The default reclaim frequency.
-        /// </summary>
-        private const float DEFAULT_RECLAIM_FREQUENCY = 60.0f;
-
-        /// <summary>
-        ///     The lifespan.
-        /// </summary>
-        private readonly float _lifespan;
-
-        /// <summary>
-        ///     The buffer.
-        /// </summary>
-        private readonly ParticleBuffer _buffer;
-
-        /// <summary>
-        ///     The profile.
-        /// </summary>
-        private readonly IProfile _profile;
-
-        /// <summary>
-        ///     The seconds since last reclaim.
-        /// </summary>
-        private float _secondsSinceLastReclaim;
-
-        /// <summary>
-        ///     The modifiers.
-        /// </summary>
-        private IModifier[] _modifiers;
-
-        /// <summary>
-        ///     Options for controlling the release.
-        /// </summary>
-        private ReleaseParameters _releaseParameters;
-
-        /// <summary>
-        ///     The reclaim frequency.
-        /// </summary>
-        private float _reclaimFrequency = DEFAULT_RECLAIM_FREQUENCY;
-
-        /// <summary>
-        ///     The reclaim cycle time.
-        /// </summary>
-        private float _reclaimCycleTime = 1f / DEFAULT_RECLAIM_FREQUENCY;
-
-        /// <summary>
-        ///     The modifier execution strategy.
-        /// </summary>
-        private IModifierExecutionStrategy _modifierExecutionStrategy;
+        private const    float                      DEFAULT_RECLAIM_FREQUENCY = 30.0f;
+        
+        private readonly float                      _lifespan;
+        private readonly ParticleBuffer             _buffer;
+        private readonly IProfile                   _profile;
+        
+        private          float                      _secondsSinceLastReclaim;
+        private          IModifier[]                _modifiers;
+        private          ReleaseParameters          _releaseParameters;
+        private          float                      _reclaimFrequency = DEFAULT_RECLAIM_FREQUENCY;
+        private          float                      _reclaimCycleTime = 1f / DEFAULT_RECLAIM_FREQUENCY;
+        private          IModifierExecutionStrategy _modifierExecutionStrategy;
 
         /// <summary>
         ///     Gets the active particles.
@@ -191,18 +154,16 @@ namespace Exomia.ParticleSystem
                 ReclaimExpiredParticles();
                 _secondsSinceLastReclaim -= _reclaimCycleTime;
             }
-
-            if (_buffer.Count > 0)
+            int count = _buffer.Count;
+            if (count > 0)
             {
                 Particle* particle = _buffer.Pointer;
-                int       count    = _buffer.Count;
 
                 while (count-- > 0)
                 {
                     particle->LifeTime += gameTime.DeltaTimeS;
                     particle->Age      =  particle->LifeTime / _lifespan;
                     particle->Position += particle->Velocity * gameTime.DeltaTimeS;
-
                     particle++;
                 }
 
@@ -235,14 +196,13 @@ namespace Exomia.ParticleSystem
         /// </summary>
         private void ReclaimExpiredParticles()
         {
-            Particle* particle = (Particle*)_buffer.NativePointer;
+            Particle* particle = _buffer.Pointer;
             int       count    = _buffer.Count;
 
             int expired = 0;
             while (count-- > 0)
             {
                 if (particle->LifeTime < _lifespan) { break; }
-
                 expired++;
                 particle++;
             }
@@ -270,12 +230,11 @@ namespace Exomia.ParticleSystem
                 particle->LifeTime =  0f;
                 particle->Position += position;
                 particle->Velocity *= _releaseParameters.Speed.Get();
-
-                particle->Color    = _releaseParameters.Color.Get();
-                particle->Opacity  = _releaseParameters.Opacity.Get();
-                particle->Scale    = _releaseParameters.Scale.Get();
-                particle->Rotation = _releaseParameters.Rotation.Get();
-                particle->Mass     = _releaseParameters.Mass.Get();
+                particle->Color    =  _releaseParameters.Color.Get();
+                particle->Opacity  =  _releaseParameters.Opacity.Get();
+                particle->Scale    =  _releaseParameters.Scale.Get();
+                particle->Rotation =  _releaseParameters.Rotation.Get();
+                particle->Mass     =  _releaseParameters.Mass.Get();
 
                 particle++;
             }

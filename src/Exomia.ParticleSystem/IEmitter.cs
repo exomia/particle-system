@@ -52,14 +52,6 @@ namespace Exomia.ParticleSystem
         Particle* Buffer { get; }
 
         /// <summary>
-        ///     Gets or sets the reclaim frequency.
-        /// </summary>
-        /// <value>
-        ///     The reclaim frequency.
-        /// </value>
-        float ReclaimFrequency { get; set; }
-
-        /// <summary>
         ///     Updates the given gameTime.
         /// </summary>
         /// <param name="gameTime"> The game time. </param>

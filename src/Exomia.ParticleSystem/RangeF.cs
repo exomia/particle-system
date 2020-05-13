@@ -13,32 +13,32 @@ using Exomia.Framework.Mathematics;
 namespace Exomia.ParticleSystem
 {
     /// <summary>
-    ///     A range. This class cannot be inherited.
+    ///     A range f. This class cannot be inherited.
     /// </summary>
-    public sealed class Range : ReleaseParameter<int>
+    public sealed class RangeF : ReleaseParameter<float>
     {
         /// <summary>
         ///     The maximum.
         /// </summary>
-        private readonly int _max;
-        
+        private readonly float _max;
+
         /// <summary>
         ///     Gets the maximum.
         /// </summary>
         /// <value>
         ///     The maximum value.
         /// </value>
-        public int Max
+        public float Max
         {
             get { return _max; }
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Range" /> class.
+        ///     Initializes a new instance of the <see cref="RangeF" /> class.
         /// </summary>
         /// <param name="min"> The minimum. </param>
         /// <param name="max"> The maximum. </param>
-        public Range(int min, int max)
+        public RangeF(float min, float max)
             : base(min)
         {
             _max = max;
@@ -48,11 +48,11 @@ namespace Exomia.ParticleSystem
         ///     Gets the get.
         /// </summary>
         /// <returns>
-        ///     An int.
+        ///     A float.
         /// </returns>
-        public override int Get()
+        public override float Get()
         {
-            return Random2.Default.Next(_value, _max);
+            return Random2.Default.NextSingle(_value, _max);
         }
     }
 }

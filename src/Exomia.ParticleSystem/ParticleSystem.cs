@@ -17,33 +17,41 @@ namespace Exomia.ParticleSystem
     /// <summary>
     ///     A particle system. This class cannot be inherited.
     /// </summary>
-    public sealed class ParticleSystem : IParticleSystem
+    public sealed class ParticleSystem : IDisposable
     {
-        /// <summary>
-        ///     True to enable, false to disable.
-        /// </summary>
         private bool _enabled;
-
-        /// <summary>
-        ///     The emitters.
-        /// </summary>
         private IEmitter[] _emitters;
 
-        /// <inheritdoc />
+        /// <summary>
+        ///     Gets or sets a value indicating whether this object is enabled.
+        /// </summary>
+        /// <value>
+        ///     True if enabled, false if not.
+        /// </value>
         public bool Enabled
         {
             get { return _enabled; }
             set { _enabled = value; }
         }
-
-        /// <inheritdoc />
+        
+        /// <summary>
+        ///     Gets or sets the emitters.
+        /// </summary>
+        /// <value>
+        ///     The emitters.
+        /// </value>
         public IEmitter[] Emitters
         {
             get { return _emitters; }
             set { _emitters = value; }
         }
-
-        /// <inheritdoc />
+        
+        /// <summary>
+        ///     Gets the active particles.
+        /// </summary>
+        /// <value>
+        ///     The active particles.
+        /// </value>
         public int ActiveParticles
         {
             get
@@ -57,7 +65,13 @@ namespace Exomia.ParticleSystem
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        ///     Indexer to get items within this collection using array index syntax.
+        /// </summary>
+        /// <param name="index"> Zero-based index of the entry to access. </param>
+        /// <returns>
+        ///     The indexed item.
+        /// </returns>
         public IEmitter this[int index]
         {
             get { return _emitters[index]; }
@@ -78,8 +92,11 @@ namespace Exomia.ParticleSystem
         {
             Dispose(false);
         }
-
-        /// <inheritdoc />
+        
+        /// <summary>
+        ///     Updates the given gameTime.
+        /// </summary>
+        /// <param name="gameTime"> The game time. </param>
         public void Update(GameTime gameTime)
         {
             for (int i = 0; i < _emitters.Length; i++)
@@ -87,8 +104,11 @@ namespace Exomia.ParticleSystem
                 _emitters[i].Update(gameTime);
             }
         }
-
-        /// <inheritdoc />
+        
+        /// <summary>
+        ///     Triggers the given position.
+        /// </summary>
+        /// <param name="position"> The position. </param>
         public void Trigger(Vector2 position)
         {
             for (int i = 0; i < _emitters.Length; i++)
@@ -96,8 +116,12 @@ namespace Exomia.ParticleSystem
                 _emitters[i].Trigger(position);
             }
         }
-
-        /// <inheritdoc />
+        
+        /// <summary>
+        ///     Triggers the given position.
+        /// </summary>
+        /// <param name="p1"> The first Vector2. </param>
+        /// <param name="p2"> The second Vector2. </param>
         public void Trigger(Vector2 p1, Vector2 p2)
         {
             for (int i = 0; i < _emitters.Length; i++)
@@ -132,9 +156,7 @@ namespace Exomia.ParticleSystem
             }
         }
 
-        /// <summary>
-        ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <inheritdoc/>
         public void Dispose()
         {
             Dispose(true);

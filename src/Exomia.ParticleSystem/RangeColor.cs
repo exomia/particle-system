@@ -9,36 +9,37 @@
 #endregion
 
 using Exomia.Framework.Mathematics;
+using SharpDX;
 
 namespace Exomia.ParticleSystem
 {
     /// <summary>
-    ///     A range. This class cannot be inherited.
+    ///     A range color. This class cannot be inherited.
     /// </summary>
-    public sealed class Range : ReleaseParameter<int>
+    public sealed class RangeColor : ReleaseParameter<Color>
     {
         /// <summary>
         ///     The maximum.
         /// </summary>
-        private readonly int _max;
-        
+        private readonly Color _max;
+
         /// <summary>
         ///     Gets the maximum.
         /// </summary>
         /// <value>
         ///     The maximum value.
         /// </value>
-        public int Max
+        public Color Max
         {
             get { return _max; }
         }
-
+        
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Range" /> class.
+        ///     Initializes a new instance of the <see cref="RangeColor" /> class.
         /// </summary>
         /// <param name="min"> The minimum. </param>
         /// <param name="max"> The maximum. </param>
-        public Range(int min, int max)
+        public RangeColor(Color min, Color max)
             : base(min)
         {
             _max = max;
@@ -48,11 +49,15 @@ namespace Exomia.ParticleSystem
         ///     Gets the get.
         /// </summary>
         /// <returns>
-        ///     An int.
+        ///     A Color.
         /// </returns>
-        public override int Get()
+        public override Color Get()
         {
-            return Random2.Default.Next(_value, _max);
+            return new Color(
+                Random2.Default.Next(_value.R, _max.R),
+                Random2.Default.Next(_value.G, _max.G),
+                Random2.Default.Next(_value.B, _max.B),
+                Random2.Default.Next(_value.A, _max.A));
         }
     }
 }

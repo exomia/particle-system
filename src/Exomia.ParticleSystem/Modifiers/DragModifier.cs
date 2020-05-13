@@ -16,21 +16,22 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class DragModifier : ModifierBase
     {
         /// <summary>
-        ///     The drag coefficient.
+        ///     Gets or sets the drag coefficient.
         /// </summary>
+        /// <value>
+        ///     The drag coefficient.
+        /// </value>
         public float DragCoefficient { get; set; } = 0.47f;
 
         /// <summary>
-        ///     The density.
+        ///     Gets or sets the density.
         /// </summary>
+        /// <value>
+        ///     The density.
+        /// </value>
         public float Density { get; set; } = 0.5f;
 
-        /// <summary>
-        ///     Executes the update action.
-        /// </summary>
-        /// <param name="elapsedSeconds"> The elapsed in seconds. </param>
-        /// <param name="particle">       [in,out] If non-, the particle. </param>
-        /// <param name="count">          Number of. </param>
+        /// <inheritdoc/>
         protected override unsafe void OnUpdate(float elapsedSeconds, Particle* particle, int count)
         {
             float drag = -DragCoefficient * Density * elapsedSeconds;

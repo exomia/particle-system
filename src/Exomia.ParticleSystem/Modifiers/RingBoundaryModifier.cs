@@ -18,16 +18,22 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class RingBoundaryModifier : ModifierBase
     {
         /// <summary>
+        ///     Gets or sets the center.
+        /// </summary>
+        /// <value>
         ///     The center.
-        /// </summary>
+        /// </value>
         public Vector2 Center { get; set; }
-
+        
         /// <summary>
-        ///     The radius.
+        ///     Gets or sets the radius.
         /// </summary>
+        /// <value>
+        ///     The radius.
+        /// </value>
         public float Radius { get; set; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         protected override unsafe void OnUpdate(float elapsedSeconds, Particle* particle, int count)
         {
             while (count-- > 0)

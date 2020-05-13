@@ -15,20 +15,9 @@ namespace Exomia.ParticleSystem.Modifiers
     /// </summary>
     public sealed class ScaleInterpolatorModifier : ModifierBase
     {
-        /// <summary>
-        ///     The initial scale.
-        /// </summary>
         private float _initialScale;
-
-        /// <summary>
-        ///     The final scale.
-        /// </summary>
-        private float _finalScale = 1.0f;
-
-        /// <summary>
-        ///     The delta scale.
-        /// </summary>
         private float _deltaScale = 1.0f;
+        private float _finalScale = 1.0f;
 
         /// <summary>
         ///     Gets or sets the initial scale.

@@ -20,7 +20,7 @@ namespace Exomia.ParticleSystem.ModifierExecutionStrategy
         /// <summary>
         ///     The default.
         /// </summary>
-        public static ParallelModifierExecutionStrategy Default = new ParallelModifierExecutionStrategy();
+        public static readonly ParallelModifierExecutionStrategy Default = new ParallelModifierExecutionStrategy();
 
         /// <summary>
         ///     Executes the modifiers operation.

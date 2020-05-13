@@ -18,21 +18,22 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class ContainerModifier : ModifierBase
     {
         /// <summary>
+        ///     Gets or sets the container.
+        /// </summary>
+        /// <value>
         ///     The container.
-        /// </summary>
-        public RectangleF Container;
+        /// </value>
+        public RectangleF Container { get; set; }
 
         /// <summary>
+        ///     Gets or sets the restitution coefficient.
+        /// </summary>
+        /// <value>
         ///     The restitution coefficient.
-        /// </summary>
-        public float RestitutionCoefficient = 1.0f;
+        /// </value>
+        public float RestitutionCoefficient { get; set; }= 1.0f;
 
-        /// <summary>
-        ///     Executes the update action.
-        /// </summary>
-        /// <param name="elapsedSeconds"> The elapsed in seconds. </param>
-        /// <param name="particle">       [in,out] If non-, the particle. </param>
-        /// <param name="count">          Number of. </param>
+        /// <inheritdoc/>
         protected override unsafe void OnUpdate(float elapsedSeconds, Particle* particle, int count)
         {
             while (count-- > 0)

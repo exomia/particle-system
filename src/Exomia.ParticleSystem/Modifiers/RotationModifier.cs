@@ -16,8 +16,11 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class RotationModifier : ModifierBase
     {
         /// <summary>
-        ///     The rotation rate.
+        ///     Gets or sets the rotation rate.
         /// </summary>
+        /// <value>
+        ///     The rotation rate.
+        /// </value>
         public float RotationRate { get; set; }
 
         /// <inheritdoc />

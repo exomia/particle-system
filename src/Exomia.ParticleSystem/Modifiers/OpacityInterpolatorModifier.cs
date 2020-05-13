@@ -15,20 +15,9 @@ namespace Exomia.ParticleSystem.Modifiers
     /// </summary>
     public sealed class OpacityInterpolatorModifier : ModifierBase
     {
-        /// <summary>
-        ///     The initial opacity.
-        /// </summary>
         private float _initialOpacity = 1.0f;
-
-        /// <summary>
-        ///     The final opacity.
-        /// </summary>
+        private float _deltaOpacity   = -1.0f;
         private float _finalOpacity;
-
-        /// <summary>
-        ///     The delta opacity.
-        /// </summary>
-        private float _deltaOpacity = -1.0f;
 
         /// <summary>
         ///     Gets or sets the initial opacity.
@@ -40,7 +29,7 @@ namespace Exomia.ParticleSystem.Modifiers
         {
             get { return _initialOpacity; }
             set
-            { 
+            {
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (_initialOpacity != value)
                 {

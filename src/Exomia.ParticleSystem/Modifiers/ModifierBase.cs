@@ -17,12 +17,11 @@ namespace Exomia.ParticleSystem.Modifiers
     /// </summary>
     public abstract class ModifierBase : IModifier
     {
-
-        /// <summary>
-        ///     The default frequency.
-        /// </summary>
         private const float DEFAULT_FREQUENCY = 144.0f;
-        
+
+        private float _frequency = DEFAULT_FREQUENCY;
+        private float _cycleTime = 1f / DEFAULT_FREQUENCY;
+        private int   _particlesUpdatedThisCycle;
 
         /// <summary>
         ///     Gets or sets the frequency.
@@ -46,22 +45,6 @@ namespace Exomia.ParticleSystem.Modifiers
                 _cycleTime = 1f / _frequency;
             }
         }
-
-        /// <summary>
-        ///     The frequency.
-        /// </summary>
-        private float _frequency = DEFAULT_FREQUENCY;
-
-        /// <summary>
-        ///     The cycle time.
-        /// </summary>
-        private float _cycleTime = 1f / DEFAULT_FREQUENCY;
-
-        /// <summary>
-        ///     The particles updated this cycle.
-        /// </summary>
-        private int _particlesUpdatedThisCycle;
-        
 
         /// <summary>
         ///     Updates this object.

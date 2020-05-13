@@ -17,7 +17,7 @@ namespace Exomia.ParticleSystem.ModifierExecutionStrategy {
         /// <summary>
         ///     The default.
         /// </summary>
-        public static SerialModifierExecutionStrategy Default = new SerialModifierExecutionStrategy();
+        public static readonly SerialModifierExecutionStrategy Default = new SerialModifierExecutionStrategy();
 
         /// <summary>
         ///     Executes the modifiers operation.

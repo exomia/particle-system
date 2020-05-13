@@ -18,21 +18,22 @@ namespace Exomia.ParticleSystem.Modifiers
     public sealed class LinearGravityModifier : ModifierBase
     {
         /// <summary>
-        ///     The direction.
+        ///     Gets or sets the direction.
         /// </summary>
+        /// <value>
+        ///     The direction.
+        /// </value>
         public Vector2 Direction { get; set; }
 
         /// <summary>
-        ///     The strength.
+        ///     Gets or sets the strength.
         /// </summary>
+        /// <value>
+        ///     The strength.
+        /// </value>
         public float Strength { get; set; }
 
-        /// <summary>
-        ///     Executes the update action.
-        /// </summary>
-        /// <param name="elapsedSeconds"> The elapsed in seconds. </param>
-        /// <param name="particle">       [in,out] If non-, the particle. </param>
-        /// <param name="count">          Number of. </param>
+        /// <inheritdoc/>
         protected override unsafe void OnUpdate(float elapsedSeconds, Particle* particle, int count)
         {
             Vector2 v = Direction * (Strength * elapsedSeconds);
